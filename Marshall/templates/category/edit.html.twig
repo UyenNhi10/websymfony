@@ -1,0 +1,53 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="title">
+    <h1>Edit Category</h1>
+    </div>
+<div class="update">
+{{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
+<div class="back">
+<a href="{{ path('app_category_index') }}">back to list</a>
+</div>
+<div class="delete">
+{{ include('category/_delete_form.html.twig') }}
+</div>
+</div>
+<style>
+    h1{
+        color: #3482A3;
+    }
+
+    .update {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+    }
+
+
+    .title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .delete {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5vh;
+    }
+
+    .back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5vh;
+    }
+</style>
+
+{% endblock %}

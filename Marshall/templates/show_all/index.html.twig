@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show All Products{% endblock %}
+
+{% block body %}
+    <style>
+        h1{
+            color: #3482A3;
+        }
+        .product-card {
+            transition: transform 0.2s;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 10px;
+        }
+
+        .product-card .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-card .card-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .product-card {
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .addToCartBtn {
+            background-color: #3482A3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 5px;
+            cursor: pointer;
+        }
+
+        .addToCartBtn:hover {
+            background-color: #3482A3;
+        }
+        .card-title{
+            color: #2D98A8;
+        }
+
+    </style>
+
+    <h1 class="text-center mt-5">List Of Products</h1><br/>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+            <div class="col">
+                <div class="card h-100 product-card">
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-image-link">
+                        <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ product.title }}</h5>
+                        <p class="card-text text-center">Price: {{ product.price }}</p>
+                        <form class="cart d-flex justify-content-center" action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                            <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        // JavaScript code
+    </script>
+{% endblock %}

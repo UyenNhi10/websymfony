@@ -1,0 +1,67 @@
+{% extends 'base_admin.html.twig' %}
+
+
+{% block body %}
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        .no-records {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+    <div class="container">
+        <h1 style=" text-align: center; color: #3482A3;">Contact Manager</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Title</th>
+                <th>Note</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.firstName }}</td>
+                    <td>{{ contact.lastName }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.phoneNumber }}</td>
+                    <td>{{ contact.titleName }}</td>
+                    <td>{{ contact.note }}</td>
+                    <td>
+                        <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="no-records">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

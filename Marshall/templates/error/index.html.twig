@@ -1,0 +1,67 @@
+{% extends 'base_login.html.twig' %}
+
+{% block body %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+    
+    .content {
+        text-align: center;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+    
+    /* Add more styles as needed to make the page look better */
+    
+    </style>
+    <div class="container">
+        <div class="content">
+            {% if is_granted('ROLE_ADMIN') %}
+                
+            {% else %}
+                <h1>Access Denied</h1>
+                <p>You don't have permission to view this page</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{# templates/order/status.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Order Status{% endblock %}
+
+{% block stylesheets %}
+   
+    <link rel="stylesheet" href="path/to/styles.css">
+    <style>
+        /* Additional custom styles for the order status page */
+
+        /* Update the body style */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px; /* Add some padding to the body */
+        }
+
+        /* Improve the heading style */
+        h1 {
+            color: #333;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 32px; /* Increase the font size for a better heading */
+        }
+
+        /* Improve the order item style */
+        .order-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px; /* Add more padding to the order item */
+            margin-bottom: 30px; /* Increase the margin for better spacing */
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease; /* Add a smooth transition effect on hover */
+        }
+
+        .order-item:hover {
+            transform: translateY(-5px); /* Add a slight lift effect on hover */
+        }
+
+        /* Improve the order details style */
+        .order-details {
+            margin-bottom: 10px;
+        }
+
+        .order-details strong {
+            font-weight: bold;
+        }
+
+        /* Improve the "No orders found" message style */
+        .no-orders-message {
+            text-align: center;
+            color: #888;
+        }
+
+        /* Optional: Add some responsive styling */
+        @media (max-width: 600px) {
+            .order-item {
+                padding: 10px; /* Adjust the padding for smaller screens */
+            }
+        }
+
+        /* Table styles */
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-table th, .order-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .order-table th {
+            background-color: #f2f2f2;
+        }
+
+        .order-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Order Status</h1>
+
+    {% if orders is empty %}
+        <p class="no-orders-message">No orders found.</p>
+    {% else %}
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Orderer's name</th>
+                    <th>Total order value</th>
+                    <th>Purchase date</th>
+                    <th>Order status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr class="order-item">
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.name }}</td>
+                        <td>{{ order.total|number_format(0, '.', ',') }}.VND</td>
+                        <td>{{ order.dateAt|date('Y-m-d H:i:s') }}</td>
+                        <td>{{ order.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

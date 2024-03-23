@@ -1,0 +1,126 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Role index{% endblock %}
+
+{% block stylesheets %}
+    
+    <style>
+        .video-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card {
+            transition: transform 0.9s;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 10px;
+        }
+
+        .product-card .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-card .card-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-card .card-footer {
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .addToCartBtn {
+            display: block;
+            margin: 0 auto;
+            background-color: #3482A3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .addToCartBtn:hover {
+            background-color: #3482A3; /* Darken the button on hover */
+        }
+
+        /* Additional styles for grid layout */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .product-card .card-img-top {
+            height: 150px;
+            object-fit: contain;
+            max-width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+       
+        <h2>Search Results for "{{ keyword }}"</h2>
+        <div class="product-container">
+            {% for product in products %}
+                <a href="{{ path('app_detail_show', {'id': product.getId()}) }}" class="card product-card">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.getTitle() }}</h5>
+                        <p class="card-text">Giá: {{ product.getPrice() }}.000.000.VND</p>
+                        <div class="action">
+                            <form action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                                <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Thêm vào giỏ hàng</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

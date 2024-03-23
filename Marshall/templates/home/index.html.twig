@@ -1,0 +1,349 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Role index{% endblock %}
+
+{% block stylesheets %}
+   
+    <style>
+        .video-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card {
+            transition: transform 0.9s;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 10px;
+        }
+
+        .product-card .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-card .card-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-card .card-footer {
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .addToCartBtn {
+            display: block;
+            margin: 0 auto;
+            background-color: #3482A3; /* Set the button background color to black */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .addToCartBtn:hover {
+            background-color: #3482A3; /* Darken the button on hover */
+        }
+
+        /* Additional styles for grid layout */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .product-card .card-img-top {
+            height: 150px;
+            object-fit: contain;
+            max-width: 100%;
+        }
+        .slider {
+          width: 100%;
+          height: 500px;
+          overflow: hidden;
+          position: relative;
+        }
+    
+        .slide {
+          width: 100%;
+          height: 100%;
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: opacity 0.5s ease-in-out;
+        }
+    
+        .slide.active {
+          display: block;
+        }
+    
+        .slider-controls {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1;
+        }
+    
+        .slider-controls button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          outline: none;
+          padding: 5px;
+          margin: 0 3px;
+          font-size: 20px;
+          color: #fff;
+        }
+    
+        .slider-controls button.active {
+          color: #ff0000;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="video-container">
+
+            </head>
+            <body>
+            <div class="about-area pt-5 pb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                {# Product Card 1 #}
+                                <div class="col-lg-6">
+                                    <div class="product-card">
+                                        <img class="card-img-top" src="https://i.ytimg.com/vi/wkTETUGHINI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBCbgEibL0SiAs4gLQSR2CLp0cFAg" alt="MARSHALL SPEAKER">
+                                        <div class="card-body">
+                                            <h5 class="card-title" href="ipad">MARSHALL SPEAKER</h5>
+                                            <p class="card-text">One of the top MARSHALL SPEAKER in the market.</p>
+                                            <a href="speakers" class="btn btn-primary addToCartBtn">View Products</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# Product Card 2 #}
+                                <div class="col-lg-6">
+                                    <div class="product-card">
+                                        <img class="card-img-top" src="https://districtm.vn/wp-content/uploads/2022/04/utimate-combo-marshall-60th-year-1-300x300.jpg" alt="Marshall Travel ">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Marshall Travel </h5>
+                                            <p class="card-text">High-performance and beautifully designed Marshall Travel .</p>
+                                            <a href="travel" class="btn btn-primary addToCartBtn">View Products</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                {# Product Card 3 #}
+                                <div class="col-lg-6">
+                                    <div class="product-card">
+                                        <img class="card-img-top" src="https://stcv4.hnammobile.com/uploads/news/large/marshall-trai-nghiem-but-pha-cung-am-thanh-social.jpg?v=1649398989" alt="Marshall Headphones">
+                                        <div class="card-body">
+                                            <h5 class="card-title" href="macbook">Marshall Headphones</h5>
+                                            <p class="card-text">Marshall Major IV over-ear headphones with high-quality sound.</p>
+                                            <a href="headphones" class="btn btn-primary addToCartBtn">View Products</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# Product Card 4 #}
+                                <div class="col-lg-6">
+                                    <div class="product-card">
+                                        <img class="card-img-top" src="https://m.media-amazon.com/images/I/51OUv5iIP-L._AC_UF1000,1000_QL80_.jpg" alt="MARSHALL ACCESSORIES">
+                                        <div class="card-body">
+                                            <h5 class="card-title"href="iphone">MARSHALL ACCESSORIES</h5>
+                                            <p class="card-text">MARSHALL wireless MARSHALL ACCESSORIES.</p>
+                                            <a href="accessories" class="btn btn-primary addToCartBtn">View Products</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 d-flex align-items-center justify-content-center" style="background-image: url('https://districtm.vn/wp-content/uploads/2021/08/Marshall-Store-by-District-M10.jpeg'); background-size: cover; background-position: center;">
+                            <div class="about-content text-center" style="background-color: rgba(255, 255, 255, 0.8); padding: 30px; border-radius: 10px;">
+                                <h2 class="mb-4" style="font-family: Montserrat, sans-serif; color: #333;">Explore Convenience</h2>
+                                <p class="mb-4" style="color: #666;">
+                                    Enjoy a great shopping experience with top technology products from our store. We provide quality products at attractive prices, ensuring customer satisfaction.
+                                </p>
+                                <a href="show_all" class="btn btn-primary" style="color: #fff; background-color: #3482A3;">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+              <div class="slider">
+                  <img class="slide active" src="https://img.ws.mms.shopee.vn/be72daad9e2d69a5b5c71d392154a6a1">
+                  <img class="slide " src="https://i.ytimg.com/vi/rg1rh9bfMqM/maxresdefault.jpg">
+                  <img class="slide " src="https://fado.vn/blog/wp-content/uploads/2023/07/loa-marshall-stanmore-3-jpg.webp">
+                
+            
+                <div class="slider-controls">
+                  <button class="control" onclick="prevSlide()">&#10094;</button>
+                  <button class="control" onclick="nextSlide()">&#10095;</button>
+                </div>
+              </div>
+            
+              <script>
+                var slides = document.querySelectorAll('.slide');
+                var currentSlide = 0;
+                var slideInterval = setInterval(nextSlide, 2000);
+            
+                function nextSlide() {
+                  slides[currentSlide].classList.remove('active');
+                  currentSlide = (currentSlide + 1) % slides.length;
+                  slides[currentSlide].classList.add('active');
+                }
+            
+                function prevSlide() {
+                  slides[currentSlide].classList.remove('active');
+                  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                  slides[currentSlide].classList.add('active');
+                }
+              </script>
+            </body>
+            </html>
+            
+            
+        </div>
+        <h1 class="text-center mt-5" style="color: #3482A3; background-color: #fff;">FEATURED PRODUCTS</h1>
+        <div class="product-container">
+            {% for product in products %}
+                <a href="{{ path('app_detail_show', {'id': product.getId()}) }}" class="card product-card">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.getTitle() }}</h5>
+                        <p class="card-text">Price: {{ product.getPrice() }}.VND</p>
+                        <div class="action">
+                            <!-- Move the form outside of the card-footer -->
+                            <form action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                                <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="home1" class="btn btn-outline-primary" style="color: #fff; background-color: #3482A3;">View All Products</a>
+        </div>
+
+        <hr class="divider">
+
+        <h2 class="text-center mt-5" style="color: #3482A3; background-color: #fff;">MARSHALL HEADPHONES</h2>
+        <div class="product-container">
+            {% for product in headphonesProducts|slice(0, 4) %}
+                <!-- Remove the extra div with class="card product-card" -->
+                <a href="{{ path('app_detail_show', {'id': product.getId()}) }}" class="card product-card">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.getTitle() }}</h5>
+                        <p class="card-text">Price: {{ product.getPrice() }}.VND</p>
+                        <div class="action">
+                            <form action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                                <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %} 
+        </div>
+        <div class="text-center mt-4">
+          <a href="headphones" class="btn btn-outline-primary" style="color: #fff; background-color: #3482A3;">View All Products</a>
+      </div>
+
+        <hr class="divider">
+
+        <h2 class="text-center mt-5" style="color: #3482A3; background-color: #fff;">MARSHALL SPEAKER</h2>
+        <div class="product-container">
+            {% for product in travelProducts|slice(0, 4) %}
+                <!-- Remove the extra div with class="card product-card" -->
+                <a href="{{ path('app_detail_show', {'id': product.getId()}) }}" class="card product-card">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.getTitle() }}</h5>
+                        <p class="card-text">Price: {{ product.getPrice() }}.VND</p>
+                        <div class="action">
+                            <form action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                                <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+          <a href="speakers" class="btn btn-outline-primary" style="color: #fff; background-color: #3482A3;">View All Products</a>
+      </div>
+
+        <hr class="divider">
+
+        <h2 class="text-center mt-5" style="color: #3482A3; background-color: #fff;">MARSHALL ACCESSORIES</h2>
+        <div class="product-container">
+            {% for product in speakersProducts|slice(0, 4) %}
+                <!-- Remove the extra div with class="card product-card" -->
+                <a href="{{ path('app_detail_show', {'id': product.getId()}) }}" class="card product-card">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.getTitle() }}</h5>
+                        <p class="card-text">Price: {{ product.getPrice() }}.VND</p>
+                        <div class="action">
+                            <form action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                                <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+        </div>
+        <div class="text-center mt-4">
+          <a href="accessories" class="btn btn-outline-primary" style="color: #fff; background-color: #3482A3;">View All Products</a>
+      </div>
+
+
+
+
+    
+
+    
+  
+  </div>
+    
+{% endblock %}
+

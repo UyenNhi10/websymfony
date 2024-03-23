@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    <style>
+        h1{
+            text-align: center;
+            color: #3482A3;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .order-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            width: 50%;
+            margin-right: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f7f7f7;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #8b5e3c;
+        }
+
+        .btn-block {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .back-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="product-container">
+            {% for cartItem in cartItems %}
+                <div class="product-item">
+                    <img src="{{ asset('image/' ~ cartItem.product.image) }}" alt="{{ cartItem.product.title }}">
+                    <div class="product-item-details">
+                        <h3>{{ cartItem.product.title }}</h3>
+                        <p>Price: {{ cartItem.product.price }}.VND</p>
+                        <p>Quantity: {{ cartItem.quantity }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="form-container">
+            <h1>Customer Details</h1>
+            <div class="order-form">
+                {{ form_start(form) }}
+                {{ form_row(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Name'} }) }}
+                {{ form_row(form.mobile, { 'attr': {'class': 'form-control', 'placeholder': 'Mobile'} }) }}
+                {{ form_row(form.address, { 'attr': {'class': 'form-control', 'placeholder': 'Address'} }) }}
+                {{ form_row(form.dateAt, { 'attr': {'class': 'form-control', 'placeholder': 'Date'} }) }}
+               
+                {{ form_row(form.user, { 'attr': {'class': 'form-control', 'placeholder': 'User'} }) }}
+                 {{ form_row(form.total, { 'attr': {'class': 'form-control', 'placeholder': 'Total'} }) }}
+              
+
+                <div class="btn-block">
+                    <button class="btn btn-primary" type="submit" style="background-color: #3482A3">Order</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

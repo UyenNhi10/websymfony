@@ -1,0 +1,45 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1>Contact</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contact.id }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ contact.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ contact.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ contact.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone_number</th>
+                <td>{{ contact.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Title_name</th>
+                <td>{{ contact.titleName }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ contact.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contact_index') }}">back to list</a>
+
+
+
+{% endblock %}

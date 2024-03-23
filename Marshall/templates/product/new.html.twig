@@ -1,0 +1,57 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="path/to/custom.css">
+{% endblock %}
+
+{% block body %}
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+    
+    .login-form .btn-block {
+        display: flex;
+        justify-content: center;
+        width: 30vw;
+        padding-top: 20px;
+    }
+    
+    .login-title {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .create { 
+        
+        display: flex;
+        justify-content: center;
+        width: 30vw;
+        padding-top: 20px;
+    }
+    .signup-link{ display: flex;
+        justify-content: center;
+        padding-top: 30px;}
+</style>
+
+<h1 class="login-title" style="color: #3482A3; background-color: #fff;">Create new Product</h1>
+<div class="login-container">
+    {{ form_start(form) }}
+    {{ form_row(form.title, { 'attr': {'class': 'form-control'} }) }}
+    {{ form_row(form.price, { 'attr': {'class': 'form-control'} }) }}
+    {{ form_row(form.description, { 'attr': {'class': 'form-control'} }) }}
+    {{ form_row(form.category, { 'attr': {'class': 'form-control'} }) }}
+    {{ form_row(form.image, { 'attr': {'class': 'form-control'} }) }}
+    <div class="create">
+    <button class="btn btn-primary btn-block" type="submit" style="color: #fff; background-color: #3482A3;">Create</button>
+    </div>
+
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

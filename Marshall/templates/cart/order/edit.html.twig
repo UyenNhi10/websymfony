@@ -1,0 +1,93 @@
+
+
+
+
+
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Update status order{% endblock %}
+
+{% block body %}
+    <style>
+        h1{
+            color: #3482A3;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-wrapper {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-btn {
+            display: block;
+            width: 100%;
+            background-color: #3482A3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .update-btn:hover {
+            background-color: #2D98A8;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #3482A3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2D98A8;
+        }
+
+        .delete-form {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+
+<div class="container">
+<div class="title">
+    <h1>Update status</h1>
+    </div>
+<div class="update">
+    {{ include('cart/order/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
+    <div class="back-link">
+    <a href="{{ path('app_order_index') }}" class="back-link">back to list</a>
+</div>
+    <div class="delete-form">
+    {{ include('cart/order/_delete_form.html.twig') }}
+</div>
+</div>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Role index{% endblock %}
+
+{% block stylesheets %}
+   
+    <style>
+        .video-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card {
+            transition: transform 0.9s;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 10px;
+        }
+
+        .product-card .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-card .card-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-card .card-footer {
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .addToCartBtn {
+            display: block;
+            margin: 0 auto;
+            background-color: black; /* Set the button background color to black */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .addToCartBtn:hover {
+            background-color: #333; /* Darken the button on hover */
+        }
+
+        /* Additional styles for grid layout */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .product-card .card-img-top {
+            height: 150px;
+            object-fit: contain;
+            max-width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="video-container">
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                .slider {
+                  width: 100%;
+                  height: 300px;
+                  overflow: hidden;
+                  position: relative;
+                }
+            
+                .slide {
+                  width: 100%;
+                  height: 100%;
+                  display: none;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  transition: opacity 0.5s ease-in-out;
+                }
+            
+                .slide.active {
+                  display: block;
+                }
+            
+                .slider-controls {
+                  position: absolute;
+                  bottom: 20px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  z-index: 1;
+                }
+            
+                .slider-controls button {
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  outline: none;
+                  padding: 5px;
+                  margin: 0 3px;
+                  font-size: 20px;
+                  color: #fff;
+                }
+            
+                .slider-controls button.active {
+                  color: #ff0000;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="slider">
+                  <img class="slide active" src="https://theman.today/wp-content/uploads/2018/04/Marshall-Mid-ANC-Headphones-Girl-770x474.jpg">
+                  <img class="slide" src="https://i.pinimg.com/736x/0e/6b/b6/0e6bb607d13df0f0f6e2f3a8c0238d65.jpg">
+            
+                <div class="slider-controls">
+                  <button class="control" onclick="prevSlide()">&#10094;</button>
+                  <button class="control" onclick="nextSlide()">&#10095;</button>
+                </div>
+              </div>
+            
+              <script>
+                var slides = document.querySelectorAll('.slide');
+                var currentSlide = 0;
+                var slideInterval = setInterval(nextSlide, 2000);
+            
+                function nextSlide() {
+                  slides[currentSlide].classList.remove('active');
+                  currentSlide = (currentSlide + 1) % slides.length;
+                  slides[currentSlide].classList.add('active');
+                }
+            
+                function prevSlide() {
+                  slides[currentSlide].classList.remove('active');
+                  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                  slides[currentSlide].classList.add('active');
+                }
+              </script>
+            </body>
+            </html>
+        </div>
+        <h1 class="text-center mt-5" style="color: #3482A3; background-color: #fff;">LIST OF PRODUCTS</h1>
+        <div class="product-container">
+            {% for product in products %}
+                <a href="{{ path('app_detail_show', {'id': product.getId()}) }}" class="card product-card">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.getTitle() }}</h5>
+                        <p class="card-text">Giá: {{ product.getPrice() }}.VND</p>
+                        <div class="action">
+                            <form action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                                <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

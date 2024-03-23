@@ -1,0 +1,35 @@
+<style>
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        width: 300px; /* Điều chỉnh độ rộng theo ý muốn */
+    }
+
+    .btn {
+        width: 100px; /* Điều chỉnh độ rộng theo ý muốn */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="form-container">
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    <button class="btn btn-primary" type="submit">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

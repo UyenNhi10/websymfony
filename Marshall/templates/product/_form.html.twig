@@ -1,0 +1,46 @@
+
+
+<style>
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+       
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+        
+    }
+
+    .form-control {
+        
+    }
+
+    .btn {
+       
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="form-container">
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_label(form.price) }}
+        {{ form_widget(form.price, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    <button class="btn btn-primary" type="submit">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

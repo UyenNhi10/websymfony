@@ -1,0 +1,69 @@
+
+
+{% block body %}
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .success-container {
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #4CAF50;
+        }
+
+        .success-message {
+            color: #333;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .success-details {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .back-home-link {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-home-link:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <div class="success-container">
+        <div class="success-icon">
+            ✨
+        </div>
+        <div class="success-message">
+            Your Order Has Been Successfully Placed!
+        </div>
+        <div class="success-details">
+            Thank you for choosing our store. Your order has been processed and will be on its way soon.
+        </div>
+        <a href="http://127.0.0.1:8000/home" class="back-home-link">Back to Home</a>
+    </div>
+{% endblock %}

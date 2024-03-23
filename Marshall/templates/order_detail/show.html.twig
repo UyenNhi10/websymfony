@@ -1,0 +1,54 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}OrderDetail{% endblock %}
+
+{% block body %}
+<style>
+    .cart-item-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+</style>
+
+<h2>Order Detail:</h2>
+
+{% if order_items is empty %}
+    <p>No order items found.</p>
+{% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set grand_total = 0 %}
+            {% for item in order_items %}
+                {% set item_total = item.product.price * item.quantity %}
+                {% set grand_total = grand_total + item_total %}
+                <tr>
+                    <td>{{ item.product.title }}</td>
+                    <td><img src="{{ asset('image/' ~ item.product.image) }}" class="cart-item-image" alt="Product Image"></td>
+                    <td>{{ item.product.price }}.VND</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item_total }}.VND</td>
+                    
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
+                <td><strong>{{ grand_total }}.VND</strong></td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}
+
+<a href="{{ path('app_order_index') }}">back to list</a>
+
+{% endblock %}

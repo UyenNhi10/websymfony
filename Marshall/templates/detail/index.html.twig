@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        header {
+            
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .product-image {
+            text-align: center;
+        }
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            
+        }
+        .product-details {
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .product-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .product-description {
+            margin-bottom: 1rem;
+        }
+        .product-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .quantity-label {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .product-rating {
+            margin-bottom: 1rem;
+        }
+        .product-rating label {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        .product-button {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1.2rem;
+        }
+        .product-button:hover {
+            background-color: #555;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .cart{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   
+    <header>
+        <h1>Product Detail</h1>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="product-image">
+                    <img src="{{ asset('image/' ~ product.getImage()) }}" class="card-img-top" alt="{{ product.getTitle() }}">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="product-details">
+                   
+                    <h5 class="product-title">Name: {{ product.getTitle() }}</h5>
+                    <p class="product-price">Price: {{ product.getPrice() }}</p>
+                  
+                    <p class="product-description">Description: {{ product.getDescription() }}</p>
+                   
+                    <div class="product-rating">
+                        <span class="quantity-label">Evaluate:</span>
+                        <label>
+                            <input type="radio" name="rating" value="5"> 5 stars
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="4"> 4 stars
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="3"> 3 stars
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="2"> 2 stars
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="1"> 1 stars
+                        </label>
+                    </div>
+                    <form class="cart" action="{{ path('app_add_to_cart', {'productId': product.id}) }}" method="POST">
+                        <button class="btn btn-primary mt-4 addToCartBtn" type="submit">Add To Cart</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="signup-link">
+        <a class="btn btn-primary" href="{{ path('app_home') }}">Back to Home</a>
+    </div>
+</body>
+</html>
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+        <div class="container">
+            <div class="row" style="color:black;">
+                <div class="col-md-6">
+                    <h5>Thông tin Apple Store</h5>
+                    <p>Chào mừng bạn đến với chi nhánh Apple Store Quận Bình Thạch! Chúng tôi tự hào là một trong những cửa hàng điện tử hàng đầu, mang đến cho khách hàng những trải nghiệm công nghệ tuyệt vời.</p>
+                    <p>Với sản phẩm chất lượng, dịch vụ chuyên nghiệp và đội ngũ nhân viên tận tâm, chúng tôi cam kết mang đến cho khách hàng sự hài lòng tuyệt đối.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Thông tin liên hệ</h5>
+                    <ul class="list-unstyled">
+                        <li>Địa chỉ: 205 Nguyễn Xí, Phường 26, Bình Thạnh, Thành phố Hồ Chí Minh</li>
+                        <li>Điện thoại: 0866251347</li>
+                        <li>Email: quyetdvbs00079@fpt.edu.vn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+    

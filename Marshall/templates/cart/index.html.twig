@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block stylesheets %}
+   
+    <style>
+       h1{
+           text-align: center;
+           color: #3482A3;
+       }
+        .cart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+        }
+
+        .cart-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-details h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-item-details p {
+            margin: 5px 0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .update-btn {
+            margin-left: 10px;
+            cursor: pointer;
+            background-color: #3482A3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .delete-btn {
+            margin-left: 10px;
+            color: #3482A3;
+            cursor: pointer;
+        }
+
+        .total-price {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background-color: #3482A3;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="cart-container">
+        <h1 class="cart-title">Cart</h1>
+
+        <div class="cart-items">
+            {% for cartItem in cartItems %}
+                <div class="cart-item">
+                    <img src="{{ asset('image/' ~ cartItem.product.image) }}" class="cart-item-image" alt="{{ cartItem.product.title }}">
+                    <div class="cart-item-details">
+                        <h3>{{ cartItem.product.title }}</h3>
+                        <p>Price: {{ cartItem.product.price }}.VND</p>
+                        <form action="{{ path('app_update_cart', { 'id': cartItem.id }) }}" method="post">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" class="quantity-input" value="{{ cartItem.quantity }}" min="1">
+                            <button type="submit" class="update-btn">Update</button>
+                        </form>
+                    </div>
+                    <span class="delete-btn" data-id="{{ cartItem.id }}">Delete</span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a class="buy-button" href="new" >Buy Now</a>
+    </div>
+   
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const cartItemId = button.dataset.id;
+                deleteCartItem(cartItemId);
+            });
+        });
+
+        async function deleteCartItem(cartItemId) {
+            try {
+                const response = await fetch(`/cart/delete/${cartItemId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                });
+
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    console.error('Failed to delete cart item');
+                }
+            } catch (error) {
+                console.error('Failed to delete cart item:', error);
+            }
+        }
+    </script>
+
+{% endblock %}

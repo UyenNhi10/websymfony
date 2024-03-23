@@ -1,0 +1,143 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+<style>
+    .cart-item-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+    /* Add general styles for the admin page */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Style the table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+/* Style the table actions links */
+.table a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Style the "Create new" link */
+.create-new-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Style the form */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.form-group button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.create-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-group button:hover {
+  background-color: #0056b3;
+}
+
+    </style>
+
+
+    <h1  style=" text-align: center;">Post manager</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Introduce</th>
+                <th>Body</th>
+                <th>End</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>DateAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.introduce }}</td>
+                <td>{{ post.body }}</td>
+                <td>{{ post.end }}</td>                                                                                          
+                <td>{{ post.name }}</td>
+                <td><img src="{{ asset('image/' ~ post.image) }}" class="cart-item-image" alt="{{ post.title }}"></td>
+                <td>{{ post.dateAt ? post.dateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_post_show', {'id': post.id}) }}">show</a>
+                    <a href="{{ path('app_post_edit', {'id': post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="create-btn">
+        <a href="{{ path('app_post_new') }}" class="btn btn-success">Create new</a>
+    </div>
+{% endblock %}

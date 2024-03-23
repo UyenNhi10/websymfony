@@ -1,0 +1,67 @@
+
+
+
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="title">
+    <h1>Edit Product</h1>
+    </div>
+<div class="update">
+    {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
+<div class="back">
+    <a href="{{ path('app_product_index') }}" class="btn btn-secondary">back to list</a>
+</div>
+<div class="delete" style="background-color: #3482A3;">
+    {{ include('product/_delete_form.html.twig') }}
+</div>
+</div>
+
+<style>
+    h1{
+        color: #3482A3;
+    }
+    .container {
+        margin: 20px auto;
+        padding: 0 20px;
+        max-width: 800px;
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .update,
+    .back,
+    .delete {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+    }
+    .back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+</style>
+
+{% endblock %}

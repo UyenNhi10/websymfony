@@ -1,0 +1,96 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <style>
+        h1{
+            color: #3482A3;
+        }
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .register-form {
+            width: 400px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+            margin-top: 5px;
+        }
+
+        .register-form button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            background-color: #3482A3;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+    <div class="register-container">
+        <form method="post" class="register-form" >
+            <h1>Register</h1>
+            {{ form_start(registrationForm) }}
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                {{ form_widget(registrationForm.email, { 'attr': {'class': 'form-control', 'autocomplete': 'email', 'required': 'required'} }) }}
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'form-control', 'autocomplete': 'new-password', 'required': 'required'} }) }}
+            </div>
+            <div class="form-group">
+                <label>
+                    {{ form_widget(registrationForm.agreeTerms) }} Agree to Terms
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style=" background-color: #3482A3;">Register</button>
+            <div class="register-link">
+                Already have an account? <a href="login">Log in</a>
+            </div>
+            {{ form_end(registrationForm) }}
+        </form>
+    </div>
+{% endblock %}

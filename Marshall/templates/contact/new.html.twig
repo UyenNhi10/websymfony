@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Contact{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        h2{
+            text-align: center;
+            color: #3482A3;
+        }
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"]{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-info p {
+            margin: 0;
+            padding: 5px;
+        }
+
+        .contact-info i {
+            font-size: 18px;
+            color: #007bff;
+            margin-right: 5px;
+        }
+
+        .contact-image {
+            width: 100%;
+            margin-top: 30px;
+            float: right;
+        }
+
+        .login-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            height: 70vh;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .login-title {
+            text-align: center; /* Center the title text */
+            margin-bottom: 20px;
+        }
+
+        .create {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* Use margin-top instead of padding-top */
+        }
+
+        /* Use a more specific selector for the map container */
+        .login-map-container {
+            grid-column: span 1; /* Adjust the number of grid columns */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Responsive design for the map */
+        .login-map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row contact-section">
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <h2 class="mb-4">Get In Touch</h2>
+                    <div class="form-group">
+                        {{ form_start(form) }}
+                        {{ form_row(form.first_name, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_row(form.last_name, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_row(form.email, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_row(form.phone_number, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_row(form.title_name, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_row(form.note, { 'attr': {'class': 'form-control', 'rows': 5} }) }}
+                        <div class="create">
+                            <button class="btn btn-primary btn-block" type="submit" style="color: #fff; background-color: #3482A3;">Send</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="contact-info" >
+                    <p><i class="fas fa-map-marker-alt" style="color: #3482A3; background-color: #fff;"></i> 123 Street, City, Country</p>
+                    <p><i class="fas fa-phone" style="color: #3482A3; background-color: #fff;"></i> +123 456 789</p>
+                    <p><i class="fas fa-envelope" style="color: #3482A3; background-color: #fff;"></i> info@example.com</p>
+                </div>
+
+                <img src="https://districtm.com.vn/wp-content/uploads/2020/04/Marshall-saigon-store-11-1151x800.jpg" alt="Image" class="contact-image">
+            </div>
+        </div>
+    </div>
+    <div class="login-map-container">
+        <iframe src=""></iframe>
+    </div>
+{% endblock %}

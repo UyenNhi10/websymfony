@@ -1,0 +1,91 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Order{% endblock %}
+
+{% block body %}
+<style>
+    h1{
+        text-align: center;
+        color: #3482A3;
+    }
+    .table {
+        margin-top: 20px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table th,
+    .table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #f2f2f2;
+    }
+    .no-records {
+        text-align: center;
+        padding: 20px;
+        font-style: italic;
+        color: #888;
+    }
+    .create-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .create-btn a {
+        padding: 10px 20px;
+        background-color: #3482A3;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+</style>
+<div class="container">
+<h1>Order</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Account</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>DateAt</th>
+            <th>Total</th>
+            <th>Order detail</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.user.email }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.mobile }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.dateAt ? order.dateAt|date('Y-m-d H:i:s') : '' }}</td>
+            <td>{{ order.total }}.000.000.VND</td>
+            <td>
+                <button class="card product-card" onclick="window.location.href = '{{ path('app_order_detail_show', {'id': order.getId()}) }}'">
+                    Order Detail
+                </button>
+                <a href="{{ path('app_order_edit', {'id': order.id}) }}">edit</a>
+                
+                
+              </td>
+              
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="7" class="no-records">No records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="create-btn">
+    <a href="{{ path('app_order_new') }}">Create new</a>
+</div>
+</div>
+{% endblock %}
